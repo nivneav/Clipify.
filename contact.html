@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipify.</title>
+    <link rel="icon" type="image/png" href="images/png/favicon.png">
+    <link href="https://fonts.cdnfonts.com/css/nexa-bold" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script async defer src="main.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCV66V3H0V"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NCV66V3H0V');
+    </script>   
+
+    <!-- Inline Styles -->
+    <style type="text/css">
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <!-- Logo -->
+        <a href="https://clipify.ro" class="logo"><img src="images/png/clipify-logo.png" alt="CLIPIFY Logo"></a>
+
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li class="active"><a href="portfolio.html">PORTFOLIO</a></li>
+                <li><a href="bts.html">BEHIND THE SCENE</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+                <!-- Social Links -->
+                <li><a href="#" class="social"><i class="fab fa-tiktok"></i></a></li>
+                <li><a href="#" class="social"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+
+        <!-- Menu Hamburger Icon -->
+        <img src="images/png/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
+    </nav>
+
+    <div class="form-container">
+        <form onsubmit="sendEmail(); reset(); return false">
+            <h3>Get In Touch</h3>
+            <input type="text"  id="name" placeholder="Name" required>
+            <input type="email"  id="email" placeholder="Email" required>
+            <input type="text" id="subject" placeholder="Phone No." required>
+            <textarea  id="message" rows="4" placeholder="Message"></textarea>
+            <button type="submit">Send Message</button>
+            <div class="message">
+                <div class="success1" id="success">Your Message Succesfully Sent!</div>
+                <div class="danger" id="danger">Please Fill In The Form!</div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Menu Button -->
+    <div class="menu-btn">
+        <div class="menu-btn__burger"></div>
+    </div>
+
+    <!-- Map Container -->
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+
+    <!-- SMTP.js Library -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    
+    <!-- Google Maps JavaScript API -->
+    <script async defer="false" type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnnzmm550Bo1McFJZ_MCaQ5IKha6TH8G8&callback=initMap">
+    </script>
+</body>
+</html>

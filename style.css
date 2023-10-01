@@ -1,0 +1,463 @@
+:root {
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --secondary-black: #050505;
+  --wildwatermelon-color: #ff5361;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  text-transform: none;
+  font-family: 'Nexa', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 24px;
+  font-style: normal;
+
+}
+
+body {
+  background: var(--secondary-black);
+  /*display: flex;*/
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+body::-webkit-scrollbar {
+  width: 0.01rem; /* Adjust this to make it as small as possible */
+  background-color: transparent; /* Set to match your background color */
+}
+
+#map {
+  width: 100%;
+  height: 100vh;
+  margin: 0px;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/*MainVideo*/
+header video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*Navbar*/
+.navbar {
+  position: absolute;
+  top: -50px;
+  padding: 50px 20px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: +100;
+}
+
+.logo img {
+  max-width: 100px; /* Set the maximum width */
+  height: auto;   /* Maintain aspect ratio */
+  margin-left: 3px;
+}
+
+.navbar a {
+  color: var(--white-color);
+}
+
+.navbar .logo {
+  font-size: 2em;
+  font-weight: bold;
+  left: 20px;
+}
+
+.navbar .nav-links ul {
+  display: flex;
+  margin-left: 0px;
+}
+
+.navbar .nav-links ul li {
+  margin: 0 15px;
+  font-size: 14px;
+}
+
+.navbar .nav-links ul li.active a {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  margin-right: -10px;
+}
+
+.social-icon {
+  margin-right: 15px !important; /* Adjust spacing between icons */
+  font-size: 20px !important; /* Adjust icon size */
+}
+
+.social {
+  display: none;
+}
+
+/*HamburgerMenu*/
+.navbar .menu-hamburger {
+  display: none;
+  position: absolute;
+  top: 78px;
+  right: 20px;
+  width: 25px;
+}
+
+.menu-btn {
+  position: fixed; /* Change to fixed position */
+  top: 22px; /* Adjust the top position as needed */
+  right: 26px; /* Adjust the right position as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  z-index: +100;
+}
+
+.menu-btn__burger {
+  display: none;
+  width: 30px; /* Adjust the width for the middle bar */
+  height: 2px; /* Increase the height for the bars */
+  background: var(--white-color);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.menu-btn__burger::before,
+.menu-btn__burger::after {
+  content: '';
+  position: absolute;
+  width: 30px; /* Adjust the width for the top and bottom bars */
+  height: 2px; /* Increase the height for the bars */
+  background: var(--white-color);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.menu-btn__burger::before {
+  transform: translateY(-10px); /* Adjust the translateY value to bring closer */
+}
+
+.menu-btn__burger::after {
+  transform: translateY(10px); /* Adjust the translateY value to bring closer */
+}
+
+/*HamburgerAnimation*/
+.menu-btn.open .menu-btn__burger {
+  transform: translateX(-35px); /* Change translateX to 0 to keep it centered */
+  background: transparent;
+  box-shadow: none;
+}
+
+.menu-btn.open .menu-btn__burger::before {
+  transform: rotate(45deg) translate(25px, -25px); /* Adjust the translate values */
+}
+
+.menu-btn.open .menu-btn__burger::after {
+  transform: rotate(-45deg) translate(25px, 25px); /* Adjust the translate values */
+}
+
+/*Video*/
+.container {
+  position: relative;
+  min-height: 100vh;
+  top: 70px;
+  width: 100%;
+  height: auto;
+}
+
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Align containers to the start of the row */
+  padding: 20px;
+}
+
+.video-container .video {
+  flex: 1 1 calc(33.33% - 15px); /* Set the initial width of each container */
+  max-width: calc(33.33% - 15px); /* Ensure containers don't exceed 33.33% width */
+  box-sizing: border-box;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-container .video::before {
+  content: "";
+  padding-top: 56.25%; /* 16:9 aspect ratio (9 / 16 * 100%) */
+  display: block;
+}
+
+.video-container .video video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Make the video take up 100% of the container's width */
+  height: 100%; /* Make the video take up 100% of the container's height */
+  object-fit: cover; /* Ensure the video covers the container */
+}
+
+.container .popup-video{
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, .8);
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
+.container .popup-video video {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 71.85%;
+  object-fit: cover;
+}
+
+.container .popup-video span {
+  position: absolute;
+  top: 35px; right: 22px;
+  font-size: 50px;
+  color: var(--white-color);
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+/*About Me Section*/
+.about-me {
+  padding: 50px;
+  text-align: center;
+  color: var(--white-color);
+  margin-top: 50px;
+}
+
+.about-me h1 {
+  text-align: center;
+  padding: 20px;
+}
+
+.about-me p {
+  margin: 0 auto; /* Center the <p> horizontally within the container */
+  text-align: start;
+}
+
+/*404*/
+.error_404 {
+  padding: 50px;
+  text-align: center;
+  color: var(--white-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+}
+
+.error_404 h4 {
+  font-size: 48px;
+  padding: 24px;
+}
+.error_404 p {
+  font-size: 24px;
+}
+
+
+/*Contact Form*/
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5); /* Set the background color */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center form elements horizontally within the container */
+  padding: 1vw 5vw;
+  width: 100%; /* Set the width as a percentage of the viewport width */
+  height: 100%; /* Set the height as a percentage of the viewport height */
+  max-width: 7000px; /* Set a maximum width for responsiveness */
+  max-height: 7050px; /* Set a maximum height for responsiveness */
+  border-radius: 0px;
+  z-index: 10;
+}
+
+form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0); /* Set the background color to fully transparent */
+  display: flex;
+  flex-direction: column;
+  padding: 0vw 0vw;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+form h3 {
+  color: var(--white-color);
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form ::placeholder {
+  color: var(--white-color);
+}
+
+form input, form textarea {
+  border: 0;
+  margin: 10px 0;
+  padding: 20px;
+  outline: none;
+  background: #141414;
+  font-size: 16px;
+  color: var(--white-color);
+}
+
+form button {
+  padding: 12px;
+  background: var(--wildwatermelon-color);
+  color: var(--white-color);
+  font-size: 18px;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.message .success1 {
+  color: var(--white-color);
+  text-align: center;
+  margin-top: 20px;
+  display: none;
+  z-index: 10000;
+}
+
+.message .danger {
+  color: var(--wildwatermelon-color);
+  text-align: center;
+  margin-top: 20px;
+  display: none;
+  z-index: 10000;
+}
+
+
+/*MediaQuerys*/
+@media screen and (max-width: 900px) {
+  .menu-btn__burger {
+    display: block;
+  }
+
+  .logo img {
+    max-width: 100px; /* Set the maximum width */
+    height: auto;   /* Maintain aspect ratio */
+    margin-left: 8px;
+  }
+
+  .navbar {
+    padding: 0;
+  }
+
+  .navbar .logo {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+  }
+
+  .navbar .menu-hamburger {
+    display: none;
+  }
+
+  .nav-links {
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    pointer-events: none; /* Initially disable interactions with the hidden menu */
+  }
+
+  .mobile-menu {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+    pointer-events: auto; /* Enable interactions when mobile-menu class is applied */
+  }
+
+  /* Add a higher specificity selector to override pointer-events for mobile menu */
+  .nav-links.mobile-menu.mobile-menu {
+    margin-left: 0;
+    pointer-events: auto; /* Enable interactions for mobile menu */
+  }
+
+  .nav-links ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar .nav-links ul li {
+    margin: 10px 0;
+    font-size: 14px;
+  }
+
+  .social-icons {
+    text-align: center; /* Center the social icons horizontally */
+  }
+
+  .social {
+    font-size: 20px;
+    display: inline-block !important;
+  }
+}
+
+/*Video Container querys*/
+@media screen and (max-width: 885px) {
+  .video-container .video {
+      flex: 1 1 calc(50% - 15px); /* Two containers per row between 900px and 500px */
+      max-width: calc(50% - 15px);
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .video-container .video {
+      flex: 1 1 calc(100% - 15px); /* One container per row below 500px */
+      max-width: calc(100% - 15px);
+  }
+}
+
+
+
+
